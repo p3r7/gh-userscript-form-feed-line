@@ -4,6 +4,7 @@
 // @match       https://github.com/*
 // @exclude     https://github.com/login
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
+// @run-at      document-idle
 // @grant       none
 // @version     1.0
 // @author      -
@@ -11,7 +12,9 @@
 // ==/UserScript==
 
 
-$(document).ready(function(){
+//$(document).ready(function(){
+// unsafeWindow.$(window).on('popstate', function() {
+unsafeWindow.$(document).on("pjax:end", function() {
     const form_feed="";
     $("td.js-file-line:contains('" + form_feed + "')").html('<hr/>');
     $("td.js-file-line > hr").css('margin', '10px auto auto 0');
